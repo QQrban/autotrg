@@ -28,7 +28,7 @@ public class SecurityConfig {
         http
             .cors(cors -> cors.configurationSource(r -> {
                 var config = new CorsConfiguration();
-                config.setAllowedOrigins(List.of("http://localhost:5173/"));
+                config.setAllowedOrigins(List.of("http://localhost:4200/"));
                 config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 config.setAllowedHeaders(List.of("*"));
                 config.setAllowCredentials(true);
@@ -38,7 +38,6 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers(
                             "/api/v1/auth/**",
-                            "/login",
                             "/css/**", "/js/**"
                     ).permitAll()
                     .anyRequest().authenticated()

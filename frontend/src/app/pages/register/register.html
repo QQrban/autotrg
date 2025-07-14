@@ -1,1 +1,74 @@
-<!-- <app-input label="Name" /> -->
+<div class="h-100 d-flex flex-col justify-content-center align-items-center">
+  <div>
+    <h1>Register</h1>
+    <form [formGroup]="form" (ngSubmit)="register()" class="card p-3 w-325">
+      <div class="mb-3">
+        <label for="nameInput" class="form-label">Username</label>
+        <input
+          formControlName="name"
+          type="text"
+          class="form-control"
+          id="nameInput"
+          placeholder="AustinPowers123"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="emailInput" class="form-label">Email address</label>
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          id="emailInput"
+          placeholder="name@example.com"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="passwordInput" class="form-label">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control"
+          id="passwordInput"
+          placeholder="**********"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="confirmPasswordInput" class="form-label">
+          Confirm Password
+        </label>
+        <input
+          formControlName="confirmPassword"
+          type="password"
+          class="form-control"
+          id="confirmPasswordInput"
+          placeholder="**********"
+        />
+      </div>
+      <button type="submit" class="btn btn-warning">Register</button>
+    </form>
+
+    <div
+      *ngIf="message"
+      class="alert alert-dismissible mt-2"
+      role="alert"
+      [ngClass]="{
+        'alert-danger': isError,
+        'alert-success': !isError
+      }"
+    >
+      <div>
+        {{ message }}
+        <a *ngIf="!isError" [routerLink]="['/login']" class="alert-link">
+          Log in
+        </a>
+      </div>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        (click)="onClose()"
+      ></button>
+    </div>
+  </div>
+</div>
