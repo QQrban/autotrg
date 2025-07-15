@@ -12,4 +12,8 @@ export class Auth {
   register(name: string, email: string, password: string) {
     return this.http.post(`${this.apiUrl}/register`, { name, email, password });
   }
+
+  login(identifier: string, password: string) {
+    return this.http.post(`${this.apiUrl}/login`, { identifier, password });
+  }
 }

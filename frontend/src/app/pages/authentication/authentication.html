@@ -1,17 +1,31 @@
 <div class="h-100 d-flex flex-col justify-content-center align-items-center">
   <div>
-    <h1>Register</h1>
-    <form [formGroup]="form" (ngSubmit)="register()" class="card p-3 w-325">
-      <div class="mb-3">
-        <label for="nameInput" class="form-label">Username</label>
+    <h1>{{ showLogin() ? "Login" : "Register" }}</h1>
+    <form
+      [formGroup]="showLogin() ? loginForm : registerForm"
+      (ngSubmit)="showLogin() ? login() : register()"
+      class="card p-3 w-325"
+    >
+      <div *ngIf="showLogin()" class="mb-3">
+        <label class="form-label">Username or email</label>
+        <input
+          formControlName="identifier"
+          type="text"
+          class="form-control"
+          placeholder="AustinPowers123"
+        />
+      </div>
+
+      <div *ngIf="!showLogin()" class="mb-3">
+        <label class="form-label">Username</label>
         <input
           formControlName="name"
           type="text"
           class="form-control"
-          id="nameInput"
           placeholder="AustinPowers123"
         />
       </div>
+      @if (!showLogin()) {
       <div class="mb-3">
         <label for="emailInput" class="form-label">Email address</label>
         <input
@@ -22,6 +36,7 @@
           placeholder="name@example.com"
         />
       </div>
+      }
       <div class="mb-3">
         <label for="passwordInput" class="form-label">Password</label>
         <input
@@ -32,6 +47,7 @@
           placeholder="**********"
         />
       </div>
+      @if (!showLogin()) {
       <div class="mb-3">
         <label for="confirmPasswordInput" class="form-label">
           Confirm Password
@@ -44,9 +60,24 @@
           placeholder="**********"
         />
       </div>
-      <button type="submit" class="btn btn-warning">Register</button>
+      }
+      <button
+        type="submit"
+        class="btn"
+        [ngClass]="{
+          'btn-warning': !showLogin(),
+          'btn-success': showLogin()
+        }"
+      >
+        {{ showLogin() ? "Login" : "Register" }}
+      </button>
     </form>
-
+    <div class="already-registered">
+      {{ showLogin() ? "Need an account?" : "Already registered?" }}
+      <button class="toggle-btn" (click)="toggle()">
+        {{ showLogin() ? "Register" : "Log in" }}
+      </button>
+    </div>
     <div
       *ngIf="message"
       class="alert alert-dismissible mt-2"
@@ -58,9 +89,9 @@
     >
       <div>
         {{ message }}
-        <a *ngIf="!isError" [routerLink]="['/login']" class="alert-link">
-          Log in
-        </a>
+        @if (!isError) {
+        <button class="toggle-btn" (click)="setLoginView()">Log in</button>
+        }
       </div>
       <button
         type="button"

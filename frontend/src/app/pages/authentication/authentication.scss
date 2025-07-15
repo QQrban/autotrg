@@ -1,0 +1,22 @@
+input {
+  &::placeholder {
+    color: #b9b9b9;
+  }
+}
+
+.w-325 {
+  width: 325px;
+}
+
+
+.already-registered {
+  margin-top: 6px;
+}
+
+.toggle-btn {
+  outline: none;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  color: dodgerblue;
+}
