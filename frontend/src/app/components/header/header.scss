@@ -1,0 +1,29 @@
+.navbar {
+  background-color: white !important;
+  box-shadow: 1px 1px 4px rgb(170, 170, 170);
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.custom-menu {
+  position: absolute;
+  top: 46px;
+  left: -120px;
+}
+
+#navbarNavDropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-check-input, .form-check-label {
+  cursor: pointer;
+}
+
+.navbar-brand {
+  display: flex;
+  gap: 6px;
+}
