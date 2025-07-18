@@ -1,9 +1,13 @@
+server:
+  port: 8081
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/main
+    url: jdbc:postgresql://localhost:5432/product_db
     username:
-    password: 
+    password:
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: create-drop
