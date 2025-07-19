@@ -5,7 +5,7 @@ import { computed, Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class Auth {
-  private apiUrl = 'http://localhost:8080/api/v1/auth';
+  private apiUrl = 'http://localhost:8080/api/v2/auth';
 
   private _token = signal<string | null>(sessionStorage.getItem('token'));
 
