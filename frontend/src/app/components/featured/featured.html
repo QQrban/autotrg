@@ -1,0 +1,14 @@
+<div class="d-flex flex-wrap mt-4 gap-5 pb-5">
+  @for (product of featuredProducts; track product.id) {
+  <div>
+    <span>{{ product.name }}</span>
+    <div
+      class="featured__image__container mt-1"
+      [ngStyle]="{
+        'background-image':
+          'url(' + enviroment.apiGatewayUrl + product.imageUrl + ')'
+      }"
+    ></div>
+  </div>
+  }
+</div>

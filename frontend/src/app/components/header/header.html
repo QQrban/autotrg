@@ -1,9 +1,29 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand ms-2">
-      <i class="bi bi-images h1 secondary-color"></i>
-      <div class="brand-name fw-bolder fs-3 primary-color">Zaposter</div>
-    </a>
+    <div class="d-flex align-items-center gap-4">
+      <div
+        (click)="goToMainPage()"
+        class="navbar-brand ms-2 d-flex align-items-center"
+      >
+        <i class="bi bi-images h1 secondary-color"></i>
+        <div class="brand-name fw-bolder fs-3 primary-color">Zaposter</div>
+      </div>
+      <div>
+        <ul class="navbar-nav flex-row gap-4">
+          <li class="nav-item">
+            <a class="nav-link">Featured</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Latest</a>
+          </li>
+          <li class="nav-item d-flex">
+            <a class="nav-link z-2">Hot</a>
+            <i class="bi bi-fire text-warning"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+    @if (isAuthorized()) {
     <div id="navbarNavDropdown" class="d-flex align-items-center ms-auto gap-3">
       <div class="form-check form-switch m-0">
         <input
@@ -28,7 +48,6 @@
         >
           <i class="bi bi-person-circle h1 secondary-color"></i>
         </a>
-
         <ul class="dropdown-menu dropdown-menu-end">
           <li><button class="dropdown-item">Profile</button></li>
           <li><button class="dropdown-item">Settings</button></li>
@@ -38,5 +57,15 @@
         </ul>
       </div>
     </div>
+    } @else {
+    <div class="d-flex gap-3">
+      <button (click)="openAuthPage(false)" class="btn btn-warning">
+        Sign Up
+      </button>
+      <button (click)="openAuthPage(true)" class="btn btn-success">
+        Log In
+      </button>
+    </div>
+    }
   </div>
 </nav>

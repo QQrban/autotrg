@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Auth } from './services/auth';
+import { AuthStateService } from './services/auth/auth';
 
 @Component({
   standalone: true,
@@ -11,7 +11,7 @@ import { Auth } from './services/auth';
 })
 export class App {
   protected readonly title = signal('frontend');
-  private readonly auth = inject(Auth);
+  private readonly auth = inject(AuthStateService);
 
   protected readonly isLoggedIn = computed(() => this.auth.isLoggedIn());
 }

@@ -1,3 +1,7 @@
+.auth__container {
+  height: calc(100% - 85px);
+}
+
 input {
   &::placeholder {
     color: #b9b9b9;

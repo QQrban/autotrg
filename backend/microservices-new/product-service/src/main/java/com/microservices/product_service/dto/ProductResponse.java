@@ -19,4 +19,6 @@ public class ProductResponse {
     private Double price;
 
     private Integer userId;
+    private Integer categoryId;
+
 }

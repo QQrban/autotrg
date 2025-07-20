@@ -5,20 +5,21 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { Auth } from '../../services/auth';
+import { AuthStateService } from '../../services/auth/auth';
 import { Router, RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Header } from '../../components/header/header';
 
 @Component({
   standalone: true,
   selector: 'app-authentication',
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, Header],
   templateUrl: './authentication.html',
   styleUrl: './authentication.scss',
 })
 export class Authentication {
-  constructor(private auth: Auth, private router: Router) {
+  constructor(public authState: AuthStateService, private router: Router) {
     const token = sessionStorage.getItem('token');
     if (token) {
       this.router.navigate(['/dashboard']);
@@ -34,7 +35,6 @@ export class Authentication {
 
   message: string | null = null;
   isError = false;
-  showLogin = signal(true);
 
   register() {
     if (this.registerForm.invalid) {
@@ -44,7 +44,7 @@ export class Authentication {
 
     const { name, email, password } = this.registerForm.value;
 
-    this.auth.register(name ?? '', email ?? '', password ?? '').subscribe({
+    this.authState.register(name ?? '', email ?? '', password ?? '').subscribe({
       next: (res: any) => {
         this.isError = false;
         this.registerForm.reset();
@@ -70,13 +70,13 @@ export class Authentication {
 
     const { identifier, password } = this.loginForm.value;
 
-    this.auth.login(identifier ?? '', password ?? '').subscribe({
+    this.authState.login(identifier ?? '', password ?? '').subscribe({
       next: (res: any) => {
         const token = res.token;
         if (token) {
           sessionStorage.setItem('token', token);
         }
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/']);
       },
       error: (err: HttpErrorResponse) => {
         this.isError = true;
@@ -86,12 +86,12 @@ export class Authentication {
   }
 
   setLoginView() {
-    this.showLogin.set(true);
+    this.authState.showLogin.set(true);
     this.onClose();
   }
 
   toggle() {
-    this.showLogin.update((v) => !v);
+    this.authState.showLogin.update((v) => !v);
   }
 
   onClose() {

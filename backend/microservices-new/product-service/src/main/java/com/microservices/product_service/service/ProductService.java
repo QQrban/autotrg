@@ -28,11 +28,15 @@ public class ProductService {
 
         productRepository.save(product);
         log.info("Product {} created", product.getName());
-
     }
 
     public List<ProductResponse> getAllProducts() {
         List<Product> products = productRepository.findAll();
+        return products.stream().map(this::mapToProductResponse).toList();
+    }
+
+    public List<ProductResponse> getByCategoryId(Integer id) {
+        List<Product> products = productRepository.findByCategoryId(id);
         return products.stream().map(this::mapToProductResponse).toList();
     }
 

@@ -4,12 +4,18 @@ import { computed, Injectable, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class Auth {
+export class AuthStateService {
   private apiUrl = 'http://localhost:8080/api/v2/auth';
 
   private _token = signal<string | null>(sessionStorage.getItem('token'));
 
   readonly isLoggedIn = computed(() => !!this._token());
+
+  showLogin = signal(true);
+
+  setLoginMode(isLogin: boolean) {
+    this.showLogin.set(isLogin);
+  }
 
   constructor(private http: HttpClient) {}
 

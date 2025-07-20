@@ -3,6 +3,13 @@
   box-shadow: 1px 1px 4px rgb(170, 170, 170);
 }
 
+.nav-item {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .dropdown-toggle::after {
   display: none !important;
 }
@@ -26,4 +33,10 @@
 .navbar-brand {
   display: flex;
   gap: 6px;
+  cursor: pointer;
+}
+
+.header__input {
+  font-size: 14px !important;
+  width: 145px !important;
 }

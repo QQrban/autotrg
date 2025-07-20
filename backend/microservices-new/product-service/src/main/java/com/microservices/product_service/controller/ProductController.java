@@ -31,4 +31,10 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/category/{categoryId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductResponse> getByCategory(@PathVariable Integer categoryId) {
+        return productService.getByCategoryId(categoryId);
+    }
+
 }
