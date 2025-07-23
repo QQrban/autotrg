@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product/product';
 import { Product } from '../../types/product';
 import { environment } from '../../enviroments/enviroment';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-featured',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class Featured {
   featuredProducts: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   enviroment = environment;
 
@@ -23,5 +24,9 @@ export class Featured {
       .subscribe((products: Product[]) => {
         this.featuredProducts = products;
       });
+  }
+
+  openDetailsPage(id: number) {
+    this.router.navigate(['/cards', id]);
   }
 }

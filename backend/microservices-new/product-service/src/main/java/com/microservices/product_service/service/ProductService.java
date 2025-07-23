@@ -4,6 +4,7 @@ package com.microservices.product_service.service;
 import com.microservices.product_service.dto.ProductRequest;
 import com.microservices.product_service.dto.ProductResponse;
 import com.microservices.product_service.repository.ProductRepository;
+import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.microservices.product_service.model.Product;
@@ -40,7 +41,7 @@ public class ProductService {
         return products.stream().map(this::mapToProductResponse).toList();
     }
 
-    private ProductResponse mapToProductResponse(Product product) {
+    public ProductResponse mapToProductResponse(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
                 .name(product.getName())
@@ -50,5 +51,12 @@ public class ProductService {
                 .userId(product.getUserId())
                 .build();
     }
+
+    public ProductResponse getById(Integer id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Product not found with id: " + id));
+        return mapToProductResponse(product);
+    }
+
 
 }

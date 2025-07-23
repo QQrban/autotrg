@@ -9,12 +9,11 @@ import { AuthStateService } from '../../services/auth/auth';
 import { Router, RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Header } from '../../components/header/header';
 
 @Component({
   standalone: true,
   selector: 'app-authentication',
-  imports: [ReactiveFormsModule, CommonModule, RouterModule, Header],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './authentication.html',
   styleUrl: './authentication.scss',
 })

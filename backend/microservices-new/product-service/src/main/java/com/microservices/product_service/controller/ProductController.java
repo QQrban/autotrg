@@ -37,4 +37,9 @@ public class ProductController {
         return productService.getByCategoryId(categoryId);
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProductResponse getProductById(@PathVariable Integer id) {
+        return productService.getById(id);
+    }
 }

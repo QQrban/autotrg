@@ -17,4 +17,8 @@ export class ProductService {
   getProductsByCategory(categoryId: number) {
     return this.http.get<Product[]>(`${this.apiUrl}/category/${categoryId}`);
   }
+
+  getProductById(productId: number) {
+    return this.http.get<Product[]>(`${this.apiUrl}/${productId}`);
+  }
 }
