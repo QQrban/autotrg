@@ -3,10 +3,12 @@ import { ProductService } from '../../services/product/product';
 import { Product } from '../../types/product';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../enviroments/enviroment';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-card-details-page',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './card-details-page.html',
   styleUrl: './card-details-page.scss',
 })
@@ -16,15 +18,30 @@ export class CardDetailsPage {
     private productService: ProductService
   ) {}
 
-  productDetails: Product[] = [];
+  productDetails: Product | null = null;
+  enviroment = environment;
+
+  date = new Date();
+  deliveryDate: Date = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
-      this.productService.getProductById(id).subscribe((product: Product[]) => {
+      this.productService.getProductById(id).subscribe((product: Product) => {
         this.productDetails = product;
-        console.log(product);
       });
+    }
+  }
+
+  sizeMultiplier: number = 1;
+
+  getPriceBySize(size: string) {
+    if (size === 's') {
+      this.sizeMultiplier = 1;
+    } else if (size === 'm') {
+      this.sizeMultiplier = 1.5;
+    } else if (size === 'l') {
+      this.sizeMultiplier = 2;
     }
   }
 }

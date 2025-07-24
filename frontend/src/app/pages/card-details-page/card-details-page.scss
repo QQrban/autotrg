@@ -1,0 +1,27 @@
+.details__image__container {
+  padding: 30px;
+  background: rgb(210, 210, 210);
+  border-radius: 12px;
+  img {
+    width: 400px;
+    border-radius: 12px;
+    &:hover {
+      scale: 1.03;
+    }
+    transition: all ease-in 0.3s;
+  }
+
+}
+
+.protect__order__container {
+  border: 1px dashed black;
+  padding: 5px 10px;
+  cursor: pointer;
+  label {
+    cursor: pointer;
+  }
+  input {
+    cursor: pointer;
+  }
+}
+

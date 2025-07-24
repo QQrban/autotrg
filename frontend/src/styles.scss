@@ -22,3 +22,16 @@ main {
 .secondary-color {
   color: #0e8bff;
 }
+
+.image__container {
+  border: 3px solid black;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all ease-in 0.3s;
+  &:hover {
+    scale: 1.03;
+  }
+}

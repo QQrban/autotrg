@@ -4,7 +4,7 @@
     <span>{{ product.name }}</span>
     <div
       (click)="openDetailsPage(product.id)"
-      class="featured__image__container mt-1"
+      class="image__container mt-1 featured__image__container"
       [ngStyle]="{
         'background-image':
           'url(' + enviroment.apiGatewayUrl + product.imageUrl + ')'
