@@ -1,12 +1,17 @@
 <main *ngIf="productDetails">
-  <div class="mt-5 w-50 d-flex justify-content-between gap-5">
+  <div
+    class="product__details__main__container mt-5 w-50 d-flex justify-content-between gap-5"
+  >
     <div class="details__image__container">
-      <img [src]="enviroment.apiGatewayUrl + productDetails.imageUrl" alt="" />
+      <img [src]="env.apiGatewayUrl + productDetails.imageUrl" alt="" />
     </div>
     <div class="w-50">
       <h2 class="primary-color">{{ productDetails.name }}</h2>
       <div class="fs-3 text-danger fw-medium">
-        €{{ productDetails.price * sizeMultiplier | number : "1.2-2" }}
+        €{{
+          productDetails.price * sizeMultiplier + protectionEnabled
+            | number : "1.2-2"
+        }}
       </div>
       <div class="text-secondary">{{ productDetails.description }}</div>
       <div class="mt-4">
@@ -40,7 +45,6 @@
           <label class="btn btn-outline-secondary" for="btnradio2">
             Medium
           </label>
-
           <input
             type="radio"
             class="btn-check"
@@ -63,6 +67,7 @@
             id="enableProtection"
             value=""
             aria-label="..."
+            (change)="toggleProtection()"
           />
           <label class="d-flex flex-column border-1" for="enableProtection">
             <span>
@@ -72,7 +77,7 @@
               <span class="text-danger">theft</span>.
             </span>
             <span>
-              Add Shipping Protection for just €3.99 by ticking the box.
+              Add Shipping Protection for just €1.19 by ticking the box.
             </span>
           </label>
         </div>
@@ -81,8 +86,31 @@
       <div class="mt-4">
         <div class="d-flex align-items-center gap-2">
           <i class="bi bi-truck fs-3"></i>
-          <b>Order today</b> — estimated delivery by
-          <b>{{ deliveryDate | date : "longDate" }}</b>
+          <b class="primary-color">Order today</b> — estimated delivery by
+          <b class="primary-color">{{ deliveryDate | date : "longDate" }}</b>
+        </div>
+      </div>
+      <div class="mt-4">
+        <div class="fs-3 fw-medium primary-color">Size guide:</div>
+        <div>
+          <table class="mt-2">
+            <tr>
+              <th>Size</th>
+              <th>Dimensions (cm)</th>
+            </tr>
+            <tr>
+              <td>Small</td>
+              <td>21 x 30 cm</td>
+            </tr>
+            <tr>
+              <td>Medium</td>
+              <td>30 x 42 cm</td>
+            </tr>
+            <tr>
+              <td>Large</td>
+              <td>60 x 90 cm</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>

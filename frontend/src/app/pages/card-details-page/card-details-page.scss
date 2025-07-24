@@ -1,6 +1,11 @@
-.details__image__container {
+.product__details__main__container {
+  background: linear-gradient(to right, #cce7f7, #f5f9fc);
   padding: 30px;
-  background: rgb(210, 210, 210);
+  border-radius: 12px;
+  box-shadow: 1px 1px 4px rgb(170, 170, 170);
+}
+
+.details__image__container {
   border-radius: 12px;
   img {
     width: 400px;
@@ -10,8 +15,10 @@
     }
     transition: all ease-in 0.3s;
   }
-
 }
+
+
+
 
 .protect__order__container {
   border: 1px dashed black;
@@ -25,3 +32,14 @@
   }
 }
 
+table, tr, th, td {
+  border: 1px solid rgb(183, 183, 183)
+}
+
+th {
+  font-weight: 600;
+}
+
+th, td {
+  padding: 10px;
+}

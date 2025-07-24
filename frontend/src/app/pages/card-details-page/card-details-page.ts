@@ -13,16 +13,19 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './card-details-page.scss',
 })
 export class CardDetailsPage {
+  readonly env = environment;
+
+  productDetails: Product | null = null;
+  sizeMultiplier: number = 1;
+  protectionEnabled: number = 0;
+
+  date = new Date();
+  deliveryDate: Date = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
   ) {}
-
-  productDetails: Product | null = null;
-  enviroment = environment;
-
-  date = new Date();
-  deliveryDate: Date = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -33,9 +36,7 @@ export class CardDetailsPage {
     }
   }
 
-  sizeMultiplier: number = 1;
-
-  getPriceBySize(size: string) {
+  getPriceBySize(size: 's' | 'm' | 'l') {
     if (size === 's') {
       this.sizeMultiplier = 1;
     } else if (size === 'm') {
@@ -43,5 +44,9 @@ export class CardDetailsPage {
     } else if (size === 'l') {
       this.sizeMultiplier = 2;
     }
+  }
+
+  toggleProtection() {
+    this.protectionEnabled = this.protectionEnabled === 0 ? 1.19 : 0;
   }
 }
