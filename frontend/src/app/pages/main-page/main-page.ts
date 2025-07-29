@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { AppState } from '../../services/app-state/app-state';
+import { AppState } from '../../services/appStateService/appStateService';
 import { Banner } from '../../components/banner/banner';
 import { Featured } from '../../components/featured/featured';
 

@@ -1,13 +1,18 @@
+.main-text__wrapper {
+  background: rgb(238, 238, 238);
+  padding: 40px 0px;
+}
+
 .main-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 550px;
   text-align: center;
   margin: 0 auto;
-  margin-top: 60px;
   gap: 15px;
+
 }
 
 .main-text__button-container {

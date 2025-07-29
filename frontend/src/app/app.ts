@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthStateService } from './services/auth/auth';
+import { AuthStateService } from './services/authService/authService';
 import { Header } from './components/header/header';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AppState } from '../../services/app-state/app-state';
-import { AuthStateService } from '../../services/auth/auth';
+import { AppState } from '../../services/appStateService/appStateService';
+import { AuthStateService } from '../../services/authService/authService';
 
 @Component({
   selector: 'app-header',

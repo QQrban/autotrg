@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,7 +28,8 @@ public class ImageController {
             }
             Resource resource = new UrlResource(filePath.toUri());
             String contentType = Files.probeContentType(filePath);
-            if (contentType == null) contentType = "application/octet-stream";
+            if (contentType == null)
+                contentType = "application/octet-stream";
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(contentType))
                     .body(resource);

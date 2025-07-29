@@ -1,8 +1,10 @@
 <div
-  class="auth__container d-flex flex-col justify-content-center align-items-center"
+  class="auth__wrapper d-flex flex-col justify-content-center align-items-center"
 >
-  <div>
-    <h1>{{ authState.showLogin() ? "Login" : "Register" }}</h1>
+  <div class="auth__container">
+    <h1 class="primary-color">
+      {{ authState.showLogin() ? "Login" : "Register" }}
+    </h1>
     <form
       [formGroup]="authState.showLogin() ? loginForm : registerForm"
       (ngSubmit)="authState.showLogin() ? login() : register()"

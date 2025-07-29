@@ -1,11 +1,15 @@
 <main *ngIf="productDetails">
   <div
-    class="product__details__main__container mt-5 w-50 d-flex justify-content-between gap-5"
+    class="product__details__main__container mt-5 d-flex justify-content-center gap-5"
   >
     <div class="details__image__container">
-      <img [src]="env.apiGatewayUrl + productDetails.imageUrl" alt="" />
+      <img
+        class="details__image"
+        [src]="env.apiGatewayUrl + productDetails.imageUrl"
+        alt=""
+      />
     </div>
-    <div class="w-50">
+    <div>
       <h2 class="primary-color">{{ productDetails.name }}</h2>
       <div class="fs-3 text-danger fw-medium">
         €{{

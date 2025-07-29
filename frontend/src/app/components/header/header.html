@@ -5,13 +5,12 @@
         (click)="goToMainPage()"
         class="navbar-brand ms-2 d-flex align-items-center"
       >
-        <i class="bi bi-images h1 secondary-color"></i>
-        <div class="brand-name fw-bolder fs-3 primary-color">Zaposter</div>
+        <div class="brand-name fw-bolder fs-3 primary-color">PosterToaster</div>
       </div>
       <div>
         <ul class="navbar-nav flex-row gap-4">
           <li class="nav-item">
-            <a class="nav-link">Featured</a>
+            <a class="nav-link">Browse</a>
           </li>
           <li class="nav-item">
             <a class="nav-link">Latest</a>
@@ -25,7 +24,18 @@
     </div>
     @if (isAuthorized()) {
     <div id="navbarNavDropdown" class="d-flex align-items-center ms-auto gap-3">
-      <div class="form-check form-switch m-0">
+      <form class="form-inline my-2 my-lg-0">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search posters..."
+          aria-label="Search"
+        />
+      </form>
+      <div class="icon__container">
+        <i class="bi bi-cart fs-5"></i>
+      </div>
+      <!-- <div class="form-check form-switch m-0">
         <input
           class="form-check-input"
           type="checkbox"
@@ -37,17 +47,16 @@
         <label class="form-check-label" for="switchCheckDefault">
           Seller Mode
         </label>
-      </div>
+      </div> -->
       <div class="dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
+        <div
+          class="nav-link dropdown-toggle icon__container"
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <i class="bi bi-person-circle h1 secondary-color"></i>
-        </a>
+          <i class="bi bi-person fs-4"></i>
+        </div>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><button class="dropdown-item">Profile</button></li>
           <li><button class="dropdown-item">Settings</button></li>
