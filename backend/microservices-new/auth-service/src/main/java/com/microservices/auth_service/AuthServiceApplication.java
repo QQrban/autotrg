@@ -20,14 +20,14 @@ public class AuthServiceApplication {
 	public CommandLineRunner demo(UserRepository repository, PasswordEncoder passwordEncoder) {
 		return args -> {
 			User user = new User();
-			user.setName("User");
+			user.setName("MikeMist");
 			user.setEmail("user@gmail.com");
 			user.setPassword(passwordEncoder.encode("user"));
 			user.setRole(Role.USER);
 			repository.save(user);
 
 			User user2 = new User();
-			user2.setName("User2");
+			user2.setName("Riccco");
 			user2.setEmail("user2@gmail.com");
 			user2.setPassword(passwordEncoder.encode("user2"));
 			user2.setRole(Role.USER);

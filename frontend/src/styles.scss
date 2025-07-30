@@ -57,3 +57,9 @@ main {
     filter: brightness(75%);
   }
 }
+
+.form-control, .focus-ring {
+ --bs-focus-ring-color: rgba(var(--bs-dark-rgb), 0.25) !important;
+ border: 1px solid var(--bs-dark-rgb);
+ box-shadow: 1px 1px 4px rgb(209, 209, 209);
+}

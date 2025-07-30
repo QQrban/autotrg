@@ -18,7 +18,6 @@
 }
 
 .poster {
-  background: white;
   width: 130px;
   height: 200px;
   left: 50%;
@@ -37,7 +36,6 @@
 
 .zoomed-poster {
   display: none;
-  transition: all 0.3s ease;
   width: 230px;
   height: 360px;
   background-size: cover;

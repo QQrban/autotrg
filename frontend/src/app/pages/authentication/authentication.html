@@ -15,7 +15,7 @@
         <input
           formControlName="identifier"
           type="text"
-          class="form-control"
+          class="form-control focus-ring"
           placeholder="AustinPowers123"
         />
       </div>
@@ -25,7 +25,7 @@
         <input
           formControlName="name"
           type="text"
-          class="form-control"
+          class="form-control focus-ring"
           placeholder="AustinPowers123"
         />
       </div>
@@ -35,7 +35,7 @@
         <input
           formControlName="email"
           type="email"
-          class="form-control"
+          class="form-control focus-ring"
           id="emailInput"
           placeholder="name@example.com"
         />
@@ -46,7 +46,7 @@
         <input
           formControlName="password"
           type="password"
-          class="form-control"
+          class="form-control focus-ring"
           id="passwordInput"
           placeholder="**********"
         />
@@ -59,26 +59,19 @@
         <input
           formControlName="confirmPassword"
           type="password"
-          class="form-control"
+          class="form-control focus-ring"
           id="confirmPasswordInput"
           placeholder="**********"
         />
       </div>
       }
-      <button
-        type="submit"
-        class="btn"
-        [ngClass]="{
-          'btn-warning': !authState.showLogin(),
-          'btn-success': authState.showLogin()
-        }"
-      >
+      <button type="submit" class="btn btn-dark">
         {{ authState.showLogin() ? "Login" : "Register" }}
       </button>
     </form>
     <div class="already-registered">
       {{ authState.showLogin() ? "Need an account?" : "Already registered?" }}
-      <button class="toggle-btn" (click)="toggle()">
+      <button class="toggle-btn text-dark" (click)="toggle()">
         {{ authState.showLogin() ? "Register" : "Log in" }}
       </button>
     </div>
