@@ -1,4 +1,4 @@
-package media;
+package com.autotrade.media;
 
 public class MediaService {
 }

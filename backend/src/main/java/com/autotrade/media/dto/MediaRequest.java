@@ -1,4 +1,4 @@
-package media.dto;
+package com.autotrade.media.dto;
 
 public record MediaRequest(
         String vehicleId,

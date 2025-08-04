@@ -41,8 +41,8 @@ public class SecurityConfig {
                             "/ping",
                             "/css/**", "/js/**"
                     ).permitAll()
-                    .requestMatchers("/api/v1/add-product").authenticated()
-                    .requestMatchers("/api/v1/products").authenticated()
+                    .requestMatchers("/api/v1/add-car").authenticated()
+                    .requestMatchers("/api/v1/cars").authenticated()
                     .requestMatchers("/api/v1/update/**").authenticated()
                     .requestMatchers("/api/v1/delete").authenticated()
                     .anyRequest().authenticated()

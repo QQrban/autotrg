@@ -1,4 +1,4 @@
-package media;
+package com.autotrade.media;
 
 import com.autotrade.car.Car;
 import jakarta.persistence.*;

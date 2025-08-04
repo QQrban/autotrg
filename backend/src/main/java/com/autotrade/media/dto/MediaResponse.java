@@ -1,6 +1,6 @@
-package media.dto;
+package com.autotrade.media.dto;
 
-import media.Media;
+import com.autotrade.media.Media;
 
 public record MediaResponse(
         String vehicleId,

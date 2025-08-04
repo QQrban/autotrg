@@ -34,6 +34,7 @@ public class CarService {
         }
 
         var car = Car.builder()
+                    .vin(request.vin())
                     .make(request.make())
                     .model(request.model())
                     .year(request.year())
@@ -43,6 +44,7 @@ public class CarService {
                     .engineType(request.engineType())
                     .transmissionType(request.transmissionType())
                     .priceEur(request.priceEur())
+                    .owner(userDetails)
                     .build();
 
         carRepository.save(car);
