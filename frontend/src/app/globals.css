@@ -11,7 +11,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   min-height: 100vh;
-  overflow: hidden;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 613px) {

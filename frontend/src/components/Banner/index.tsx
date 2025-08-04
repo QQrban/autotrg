@@ -99,7 +99,6 @@ export const Banner = () => {
           />
           <Button
             sx={{
-              bgcolor: "#1a1a1ad4",
               width: "120px",
               height: "55px",
             }}

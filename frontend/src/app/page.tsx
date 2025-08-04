@@ -1,4 +1,5 @@
 import { Banner } from "@/components/Banner";
+import { CarCard } from "@/components/CarCard";
 import Header from "@/components/Header";
 import { Box, Typography } from "@mui/material";
 
@@ -12,7 +13,7 @@ export default function Home() {
       <Box sx={{ textAlign: "center" }}>
         <Typography
           sx={{
-            mt: 1,
+            mt: 3,
             fontSize: "30px",
             fontWeight: "bold",
           }}
@@ -20,6 +21,20 @@ export default function Home() {
         >
           Featured Vehicles
         </Typography>
+        <Typography sx={{ mt: 1 }}>
+          Top Value and Quality, Chosen by Our Experts
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 10,
+        }}
+      >
+        <CarCard />
+        <CarCard />
+        <CarCard />
       </Box>
     </div>
   );
