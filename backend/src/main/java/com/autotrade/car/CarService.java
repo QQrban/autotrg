@@ -43,6 +43,7 @@ public class CarService {
                     .drivetrainType(request.drivetrainType())
                     .engineType(request.engineType())
                     .transmissionType(request.transmissionType())
+                    .odometerKm(request.odometerKm())
                     .priceEur(request.priceEur())
                     .owner(userDetails)
                     .build();

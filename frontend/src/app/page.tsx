@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 
 export default function Home() {
   return (
-    <div>
+    <Box component="main">
       <Header />
       <div>
         <Banner />
@@ -36,6 +36,6 @@ export default function Home() {
         <CarCard />
         <CarCard />
       </Box>
-    </div>
+    </Box>
   );
 }

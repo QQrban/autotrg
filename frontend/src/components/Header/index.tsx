@@ -13,8 +13,9 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useRouter } from "next/navigation";
 
 const pages = ["Buy", "Sell", "Finance"];
 const settings = ["Profile", "Account", "Settings", "Logout"];
@@ -27,6 +28,7 @@ const darkTheme = createTheme({
     },
     text: {
       primary: "#ffffff",
+      secondary: "#1976d2",
     },
   },
 });
@@ -36,6 +38,14 @@ function Header() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(
     null
   );
+  const [token, setToken] = useState<string | null>(null);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedToken = sessionStorage.getItem("token");
+    setToken(storedToken);
+  }, []);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -50,6 +60,18 @@ function Header() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleClickSignUp = () => {
+    router.push("/register");
+  };
+
+  const handleClickLogIn = () => {
+    router.push("/login");
+  };
+
+  const goToMainPage = () => {
+    router.push("/");
   };
 
   return (
@@ -67,13 +89,27 @@ function Header() {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box
-              sx={{ display: "flex", alignItems: "center", gap: "8px" }}
+              onClick={goToMainPage}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                cursor: "pointer",
+              }}
             >
+              <Box
+                component="img"
+                src="/icons/logo.png"
+                alt="Car Icon"
+                sx={{
+                  width: 60,
+                  height: "auto",
+                }}
+              />
               <Typography
                 variant="h6"
                 noWrap
                 component="a"
-                href="/"
                 sx={{
                   mr: 2,
                   display: { xs: "none", md: "flex" },
@@ -157,50 +193,73 @@ function Header() {
                 </Button>
               ))}
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    sx={{
-                      bgcolor: "white",
-                      color: "#393939",
-                    }}
-                    alt="Remy Sharp"
-                    src=""
-                  />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+            {token ? (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      sx={{
+                        bgcolor: "white",
+                        color: "#393939",
+                      }}
+                      alt="Remy Sharp"
+                      src=""
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  PaperProps={{
+                    sx: {
+                      bgcolor: "#1a1a1a",
+                      color: "white",
+                    },
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography sx={{ textAlign: "center" }}>
+                        {setting}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
                 }}
-                PaperProps={{
-                  sx: {
-                    bgcolor: "#1a1a1a",
-                    color: "white",
-                  },
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography sx={{ textAlign: "center" }}>
-                      {setting}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+                <Button
+                  color="primary"
+                  sx={{
+                    bgcolor: (theme) => theme.palette.text.secondary,
+                  }}
+                  onClick={handleClickSignUp}
+                >
+                  Sign Up
+                </Button>
+                <Button onClick={handleClickLogIn} variant="contained">
+                  Log In
+                </Button>
+              </Box>
+            )}
           </Toolbar>
         </Container>
       </AppBar>

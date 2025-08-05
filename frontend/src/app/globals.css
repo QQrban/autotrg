@@ -11,7 +11,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   min-height: 100vh;
-  padding-bottom: 20px;
+  
 }
 
 @media (max-width: 613px) {
@@ -43,4 +43,7 @@ input {
 
 p {
   font-family: inherit !important;
+}
+
+main {
 }

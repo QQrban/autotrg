@@ -28,12 +28,12 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    public ResponseEntity<List<CarResponse>> getAllProducts() {
+    public ResponseEntity<List<CarResponse>> getAllCars() {
         return ResponseEntity.ok(carService.getAllCars());
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<CarResponse> updateProduct(
+    public ResponseEntity<CarResponse> updateCar(
             @PathVariable Integer id,
             @RequestBody CarRequest request,
             @AuthenticationPrincipal User userDetails
@@ -42,7 +42,7 @@ public class CarController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteProduct(@RequestBody List<Integer> ids){
+    public void deleteCar(@RequestBody List<Integer> ids){
         carService.deleteCar(ids);
     }
 }
