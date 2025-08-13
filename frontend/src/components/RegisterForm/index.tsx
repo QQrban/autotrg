@@ -11,22 +11,21 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { FormikErrors, FormikHandlers } from "formik";
 import { useState } from "react";
 
 type RegisterFormProps = {
   values: RegisterFormTypes;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  handleChange: (
-    prop: keyof RegisterFormTypes
-  ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
-  agreedTerms: () => void;
+  handleChange: FormikHandlers["handleChange"];
+  errors: FormikErrors<RegisterFormTypes>;
 };
 
 export default function RegisterForm({
   values,
   handleSubmit,
   handleChange,
-  agreedTerms,
+  errors,
 }: RegisterFormProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -61,17 +60,20 @@ export default function RegisterForm({
       >
         <TextField
           id="firstName"
+          name="firstName"
           label="First name"
           variant="outlined"
           value={values.firstName}
-          onChange={handleChange("firstName")}
+          onChange={handleChange}
         />
+        <Typography component="span">{errors.firstName}</Typography>
         <TextField
           id="lastName"
+          name="firstName"
           label="Last name"
           variant="outlined"
           value={values.lastName}
-          onChange={handleChange("lastName")}
+          onChange={handleChange}
         />
       </Box>
       <Box
@@ -87,16 +89,18 @@ export default function RegisterForm({
             width: "100%",
           }}
           id="username"
+          name="userName"
           label="Username"
           variant="outlined"
           value={values.userName}
-          onChange={handleChange("userName")}
+          onChange={handleChange}
         />
         <TextField
           sx={{
             width: "100%",
           }}
           id="email"
+          name="email"
           label="Email"
           variant="outlined"
           slotProps={{
@@ -105,14 +109,15 @@ export default function RegisterForm({
             },
           }}
           value={values.email}
-          onChange={handleChange("email")}
+          onChange={handleChange}
         />
 
         <OutlinedInput
           id="password"
+          name="password"
           type={showPassword ? "text" : "password"}
           value={values.password}
-          onChange={handleChange("password")}
+          onChange={handleChange}
           placeholder="Password"
           endAdornment={
             <IconButton
@@ -127,9 +132,10 @@ export default function RegisterForm({
         />
         <OutlinedInput
           id="confirmPassword"
+          name="confirmPassword"
           type={showConfirmPassword ? "text" : "password"}
           value={values.confirmPassword}
-          onChange={handleChange("confirmPassword")}
+          onChange={handleChange}
           placeholder="Confirm Password"
           endAdornment={
             <IconButton
@@ -152,9 +158,11 @@ export default function RegisterForm({
         }}
       >
         <Checkbox
-          onChange={agreedTerms}
-          sx={{ p: 0 }}
           id="termsCheckbox"
+          name="agreedTerms"
+          value={values.agreedTerms}
+          onChange={handleChange}
+          sx={{ p: 0 }}
         />
         <Box
           htmlFor="termsCheckbox"

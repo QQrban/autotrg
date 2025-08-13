@@ -20,16 +20,6 @@ const initialFormValues = {
 };
 
 export default function Register() {
-  const [values, setValues] = useState<RegisterFormTypes>({
-    firstName: "",
-    lastName: "",
-    userName: "",
-    password: "",
-    confirmPassword: "",
-    email: "",
-    agreedTerms: false,
-  });
-
   const router = useRouter();
 
   const submitForm = (values: typeof initialFormValues) => {
@@ -41,32 +31,10 @@ export default function Register() {
     onSubmit: submitForm,
   });
 
-  const handleChange =
-    (prop: keyof RegisterFormTypes) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const { values, handleChange, handleSubmit, errors } = formik;
 
   const goToLogin = () => {
     router.push("/login");
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (
-      values.password !== values.confirmPassword ||
-      !values.agreedTerms
-    ) {
-      return;
-    }
-    console.log(values);
-  };
-
-  const agreedTerms = () => {
-    setValues({
-      ...values,
-      agreedTerms: !values.agreedTerms,
-    });
   };
 
   return (
@@ -109,7 +77,7 @@ export default function Register() {
           values={values}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
-          agreedTerms={agreedTerms}
+          errors={errors}
         />
         <Typography sx={{ mt: 1 }}>
           Already have an account?{" "}
